@@ -1,0 +1,15 @@
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.AssemblyInfo.cs
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\bin\Debug\net8.0\IIScribe.Infrastructure.deps.json
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\bin\Debug\net8.0\IIScribe.Infrastructure.dll
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\bin\Debug\net8.0\IIScribe.Infrastructure.pdb
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\bin\Debug\net8.0\IIScribe.Core.dll
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\bin\Debug\net8.0\IIScribe.Core.pdb
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.F44180A7.Up2Date
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.dll
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\refint\IIScribe.Infrastructure.dll
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\IIScribe.Infrastructure.pdb
+C:\Users\admin\Desktop\IIScrib\IIScribe\src\IIScribe.Infrastructure\obj\Debug\net8.0\ref\IIScribe.Infrastructure.dll

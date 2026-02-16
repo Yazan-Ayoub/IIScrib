@@ -1,0 +1,2031 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IIScribe API",
+    "description": "Professional deployment orchestration platform for .NET applications",
+    "version": "v3.0"
+  },
+  "paths": {
+    "/api/Deployments": {
+      "post": {
+        "tags": [
+          "Deployments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/DeploymentStatus"
+            }
+          },
+          {
+            "name": "environment",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/DeploymentEnvironment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Deployment"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Deployment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Deployment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Deployments/{id}/status": {
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentStatusInfo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentStatusInfo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentStatusInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Deployments/{id}": {
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Deployments/{id}/rollback": {
+      "post": {
+        "tags": [
+          "Deployments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Deployments/{id}/logs": {
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/LogLevel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentLog"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentLog"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Deployments/dashboard/summary": {
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardSummary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardSummary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profiles": {
+      "post": {
+        "tags": [
+          "Profiles"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentProfile"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentProfile"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentProfile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentProfile"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentProfile"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentProfile"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profiles/{id}": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentProfile"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentProfile"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentProfile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/Profiles/{id}/export": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profiles/import": {
+      "post": {
+        "tags": [
+          "Profiles"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profiles/templates": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentProfile"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentProfile"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentProfile"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AppPoolRuntimeVersion": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ApplicationType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "AuditEventType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "AuditLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "eventType": {
+            "$ref": "#/components/schemas/AuditEventType"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "userAgent": {
+            "type": "string",
+            "nullable": true
+          },
+          "resourceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "resourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          },
+          "beforeValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "afterValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "signature": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BackupRetentionPolicy": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "CertificateResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "thumbprint": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CertificateType"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CertificateType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "CloudConfiguration": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "$ref": "#/components/schemas/CloudProvider"
+          },
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "resourceGroup": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "awsRegion": {
+            "type": "string",
+            "nullable": true
+          },
+          "awsAccessKeyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "awsSecretKeyEncrypted": {
+            "type": "string",
+            "nullable": true
+          },
+          "gcpProjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "gcpServiceAccountKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmName": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicIpAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "manageDns": {
+            "type": "boolean"
+          },
+          "dnsZone": {
+            "type": "string",
+            "nullable": true
+          },
+          "dnsRecordName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudProvider": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DashboardSummary": {
+        "type": "object",
+        "properties": {
+          "totalDeployments": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activeSites": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "successRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "deploymentsLast30Days": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "certificatesExpiringSoon": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recentSites": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SiteStatus"
+            },
+            "nullable": true
+          },
+          "recentDeployments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Deployment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DatabaseAuthenticationMode": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DatabaseConfiguration": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "$ref": "#/components/schemas/DatabaseProvider"
+          },
+          "deploymentMode": {
+            "$ref": "#/components/schemas/DatabaseDeploymentMode"
+          },
+          "authMode": {
+            "$ref": "#/components/schemas/DatabaseAuthenticationMode"
+          },
+          "serverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "databaseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "passwordEncrypted": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectionString": {
+            "type": "string",
+            "nullable": true
+          },
+          "scriptPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "migrationsFolder": {
+            "type": "string",
+            "nullable": true
+          },
+          "dacPacPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "backupBeforeDeployment": {
+            "type": "boolean"
+          },
+          "backupPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "retentionPolicy": {
+            "$ref": "#/components/schemas/BackupRetentionPolicy"
+          },
+          "autoRollbackOnFailure": {
+            "type": "boolean"
+          },
+          "seedTestData": {
+            "type": "boolean"
+          },
+          "seedScripts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DatabaseDeploymentMode": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DatabaseDeploymentResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "databaseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "serverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scriptsExecuted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rowsAffected": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "backupPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DatabaseProvider": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Deployment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationType": {
+            "$ref": "#/components/schemas/ApplicationType"
+          },
+          "applicationVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "target": {
+            "$ref": "#/components/schemas/DeploymentTarget"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/DeploymentEnvironment"
+          },
+          "targetUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainName": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpPort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "httpsPort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "siteName": {
+            "type": "string",
+            "nullable": true
+          },
+          "appPoolName": {
+            "type": "string",
+            "nullable": true
+          },
+          "runtimeVersion": {
+            "$ref": "#/components/schemas/AppPoolRuntimeVersion"
+          },
+          "pipelineMode": {
+            "$ref": "#/components/schemas/PipelineMode"
+          },
+          "databaseConfig": {
+            "$ref": "#/components/schemas/DatabaseConfiguration"
+          },
+          "sslConfig": {
+            "$ref": "#/components/schemas/SslConfiguration"
+          },
+          "strategy": {
+            "$ref": "#/components/schemas/DeploymentStrategy"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "durationSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "deploymentOutput": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "rollbackCommand": {
+            "type": "string",
+            "nullable": true
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "profile": {
+            "$ref": "#/components/schemas/DeploymentProfile"
+          },
+          "logs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentLog"
+            },
+            "nullable": true
+          },
+          "healthChecks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HealthCheck"
+            },
+            "nullable": true
+          },
+          "auditLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditLog"
+            },
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "cloudConfig": {
+            "$ref": "#/components/schemas/CloudConfiguration"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentEnvironment": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DeploymentLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "deploymentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deployment": {
+            "$ref": "#/components/schemas/Deployment"
+          },
+          "level": {
+            "$ref": "#/components/schemas/LogLevel"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "type": "string",
+            "nullable": true
+          },
+          "stackTrace": {
+            "type": "string",
+            "nullable": true
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationType": {
+            "$ref": "#/components/schemas/ApplicationType"
+          },
+          "target": {
+            "$ref": "#/components/schemas/DeploymentTarget"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/DeploymentEnvironment"
+          },
+          "strategy": {
+            "$ref": "#/components/schemas/DeploymentStrategy"
+          },
+          "domainPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpPort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "httpsPort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runtimeVersion": {
+            "$ref": "#/components/schemas/AppPoolRuntimeVersion"
+          },
+          "pipelineMode": {
+            "$ref": "#/components/schemas/PipelineMode"
+          },
+          "appPoolIdleTimeoutMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "appPoolAlwaysRunning": {
+            "type": "boolean"
+          },
+          "databaseTemplate": {
+            "$ref": "#/components/schemas/DatabaseConfiguration"
+          },
+          "sslTemplate": {
+            "$ref": "#/components/schemas/SslConfiguration"
+          },
+          "cloudTemplate": {
+            "$ref": "#/components/schemas/CloudConfiguration"
+          },
+          "environmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "customSettings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "teamName": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientName": {
+            "type": "string",
+            "nullable": true
+          },
+          "deploymentCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastUsedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isShared": {
+            "type": "boolean"
+          },
+          "isTemplate": {
+            "type": "boolean"
+          },
+          "deployments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Deployment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentRequest": {
+        "type": "object",
+        "properties": {
+          "applicationPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "profileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainName": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpPort": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpsPort": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "target": {
+            "$ref": "#/components/schemas/DeploymentTarget"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/DeploymentEnvironment"
+          },
+          "strategy": {
+            "$ref": "#/components/schemas/DeploymentStrategy"
+          },
+          "databaseConfig": {
+            "$ref": "#/components/schemas/DatabaseConfiguration"
+          },
+          "sslConfig": {
+            "$ref": "#/components/schemas/SslConfiguration"
+          },
+          "cloudConfig": {
+            "$ref": "#/components/schemas/CloudConfiguration"
+          },
+          "runHealthChecks": {
+            "type": "boolean"
+          },
+          "sendNotifications": {
+            "type": "boolean"
+          },
+          "environmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "deploymentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "durationSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "databaseResult": {
+            "$ref": "#/components/schemas/DatabaseDeploymentResult"
+          },
+          "certificateResult": {
+            "$ref": "#/components/schemas/CertificateResult"
+          },
+          "healthCheckSummary": {
+            "$ref": "#/components/schemas/HealthCheckSummary"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "rollbackCommand": {
+            "type": "string",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DeploymentStatusInfo": {
+        "type": "object",
+        "properties": {
+          "deploymentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "percentComplete": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentStage": {
+            "type": "string",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "estimatedCompletion": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "recentLogs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentStrategy": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DeploymentTarget": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "HealthCheck": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "deploymentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deployment": {
+            "$ref": "#/components/schemas/Deployment"
+          },
+          "checkName": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/HealthCheckStatus"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "responseTimeMs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "checkedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthCheckResult": {
+        "type": "object",
+        "properties": {
+          "checkName": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/HealthCheckStatus"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "responseTimeMs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "checkedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthCheckStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "HealthCheckSummary": {
+        "type": "object",
+        "properties": {
+          "allHealthy": {
+            "type": "boolean"
+          },
+          "totalChecks": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "healthyCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "degradedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unhealthyCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HealthCheckResult"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogLevel": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "PipelineMode": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "SiteStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "siteName": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRunning": {
+            "type": "boolean"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "appPoolName": {
+            "type": "string",
+            "nullable": true
+          },
+          "appPoolRunning": {
+            "type": "boolean"
+          },
+          "workingSetMemoryMB": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cpuUsagePercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "activeConnections": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastDeploymentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "lastDeployedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastDeployedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "health": {
+            "$ref": "#/components/schemas/HealthCheckStatus"
+          },
+          "lastHealthCheckAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "certificateThumbprint": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateExpiryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "certificateDaysUntilExpiry": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "additionalInfo": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SslConfiguration": {
+        "type": "object",
+        "properties": {
+          "certificateType": {
+            "$ref": "#/components/schemas/CertificateType"
+          },
+          "enableHsts": {
+            "type": "boolean"
+          },
+          "redirectHttpToHttps": {
+            "type": "boolean"
+          },
+          "validityDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "letsEncryptEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "autoRenew": {
+            "type": "boolean"
+          },
+          "certificatePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificatePassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "keyVaultUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "thumbprint": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

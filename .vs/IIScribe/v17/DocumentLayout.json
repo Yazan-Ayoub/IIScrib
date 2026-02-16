@@ -1,0 +1,146 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-4D5E-8F7A-9B8C7D6E5F4A}|src\\IIScribe.CLI\\IIScribe.CLI.csproj|c:\\users\\admin\\desktop\\iiscrib\\iiscribe\\src\\iiscribe.cli\\iiscribe.cli.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-4D5E-8F7A-9B8C7D6E5F4A}|src\\IIScribe.CLI\\IIScribe.CLI.csproj|solutionrelative:src\\iiscribe.cli\\iiscribe.cli.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3D4E5F6-A7B8-4C5D-8E7F-9A8B7C6D5E4F}|src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj|c:\\users\\admin\\desktop\\iiscrib\\iiscribe\\src\\iiscribe.infrastructure\\iiscribe.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C3D4E5F6-A7B8-4C5D-8E7F-9A8B7C6D5E4F}|src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj|solutionrelative:src\\iiscribe.infrastructure\\iiscribe.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-4D5E-8F7A-9B8C7D6E5F4A}|src\\IIScribe.CLI\\IIScribe.CLI.csproj|c:\\users\\admin\\desktop\\iiscrib\\iiscribe\\src\\iiscribe.cli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-4D5E-8F7A-9B8C7D6E5F4A}|src\\IIScribe.CLI\\IIScribe.CLI.csproj|solutionrelative:src\\iiscribe.cli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3D4E5F6-A7B8-4C5D-8E7F-9A8B7C6D5E4F}|src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj|c:\\users\\admin\\desktop\\iiscrib\\iiscribe\\src\\iiscribe.infrastructure\\services\\realiisdeploymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D4E5F6-A7B8-4C5D-8E7F-9A8B7C6D5E4F}|src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj|solutionrelative:src\\iiscribe.infrastructure\\services\\realiisdeploymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3D4E5F6-A7B8-4C5D-8E7F-9A8B7C6D5E4F}|src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj|c:\\users\\admin\\desktop\\iiscrib\\iiscribe\\src\\iiscribe.infrastructure\\services\\iisdeploymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D4E5F6-A7B8-4C5D-8E7F-9A8B7C6D5E4F}|src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj|solutionrelative:src\\iiscribe.infrastructure\\services\\iisdeploymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-4B5C-8D7E-9F8A7B6C5D4E}|src\\IIScribe.Core\\IIScribe.Core.csproj|c:\\users\\admin\\desktop\\iiscrib\\iiscribe\\src\\iiscribe.core\\interfaces\\iservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-4B5C-8D7E-9F8A7B6C5D4E}|src\\IIScribe.Core\\IIScribe.Core.csproj|solutionrelative:src\\iiscribe.core\\interfaces\\iservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.CLI\\Program.cs",
+              "RelativeDocumentMoniker": "src\\IIScribe.CLI\\Program.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.CLI\\Program.cs",
+              "RelativeToolTip": "src\\IIScribe.CLI\\Program.cs",
+              "ViewState": "AgIAAJMBAAAAAAAAAAAiwJoBAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T19:32:06.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RealIISDeploymentService.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Infrastructure\\Services\\RealIISDeploymentService.cs",
+              "RelativeDocumentMoniker": "src\\IIScribe.Infrastructure\\Services\\RealIISDeploymentService.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Infrastructure\\Services\\RealIISDeploymentService.cs",
+              "RelativeToolTip": "src\\IIScribe.Infrastructure\\Services\\RealIISDeploymentService.cs",
+              "ViewState": "AgIAAPgBAAAAAAAAAAAmwAgCAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T19:31:22.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IISDeploymentService.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Infrastructure\\Services\\IISDeploymentService.cs",
+              "RelativeDocumentMoniker": "src\\IIScribe.Infrastructure\\Services\\IISDeploymentService.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Infrastructure\\Services\\IISDeploymentService.cs",
+              "RelativeToolTip": "src\\IIScribe.Infrastructure\\Services\\IISDeploymentService.cs",
+              "ViewState": "AgIAAH8BAAAAAAAAAAAqwJABAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T19:31:06.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IIScribe.CLI",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.CLI\\IIScribe.CLI.csproj",
+              "RelativeDocumentMoniker": "src\\IIScribe.CLI\\IIScribe.CLI.csproj",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.CLI\\IIScribe.CLI.csproj",
+              "RelativeToolTip": "src\\IIScribe.CLI\\IIScribe.CLI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-16T19:30:50.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IIScribe.Infrastructure",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj",
+              "RelativeToolTip": "src\\IIScribe.Infrastructure\\IIScribe.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-16T19:30:40.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IServices.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Core\\Interfaces\\IServices.cs",
+              "RelativeDocumentMoniker": "src\\IIScribe.Core\\Interfaces\\IServices.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\IIScrib\\IIScribe\\src\\IIScribe.Core\\Interfaces\\IServices.cs",
+              "RelativeToolTip": "src\\IIScribe.Core\\Interfaces\\IServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T19:30:29.547Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIScribe v3.0 - Deployment Orchestration</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>🚀 IIScribe</h1>
+                <p class="version">v3.0</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="deploy">
+                    <span class="icon">🚀</span>
+                    <span>Deploy</span>
+                </a>
+                <a href="#" class="nav-item" data-page="deployments">
+                    <span class="icon">📦</span>
+                    <span>Deployments</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profiles">
+                    <span class="icon">⚙️</span>
+                    <span>Profiles</span>
+                </a>
+                <a href="#" class="nav-item" data-page="sites">
+                    <span class="icon">🌐</span>
+                    <span>Sites</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span class="icon">🔧</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <input type="text" placeholder="Search deployments, sites...">
+                </div>
+                <div class="user-menu">
+                    <span class="user-name">Admin</span>
+                    <div class="avatar">A</div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page active">
+                    <h2 class="page-title">Dashboard</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon success">✓</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="total-deployments">0</div>
+                                <div class="stat-label">Total Deployments</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon info">🌐</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="active-sites">0</div>
+                                <div class="stat-label">Active Sites</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon warning">%</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="success-rate">0%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon danger">⚠️</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="certs-expiring">0</div>
+                                <div class="stat-label">Certs Expiring</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-deployments">
+                        <h3>Recent Deployments</h3>
+                        <table class="data-table" id="recent-deployments-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Environment</th>
+                                    <th>Status</th>
+                                    <th>Duration</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Deploy Page -->
+                <div id="deploy-page" class="page">
+                    <h2 class="page-title">New Deployment</h2>
+                    
+                    <div class="deploy-form-container">
+                        <form id="deploy-form" class="deploy-form">
+                            <div class="form-section">
+                                <h3>Application Details</h3>
+                                
+                                <div class="form-group">
+                                    <label for="app-path">Application Path *</label>
+                                    <input type="text" id="app-path" required 
+                                           placeholder="C:\MyApp\publish">
+                                    <small>Path to your published application folder</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="domain-name">Domain Name *</label>
+                                    <input type="text" id="domain-name" required 
+                                           placeholder="myapp.local">
+                                    <small>Domain name for the application</small>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="http-port">HTTP Port</label>
+                                        <input type="number" id="http-port" value="80">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="https-port">HTTPS Port</label>
+                                        <input type="number" id="https-port" value="443">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Configuration</h3>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="environment">Environment</label>
+                                        <select id="environment">
+                                            <option value="Development">Development</option>
+                                            <option value="Staging">Staging</option>
+                                            <option value="Production">Production</option>
+                                            <option value="Testing">Testing</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="target">Deployment Target</label>
+                                        <select id="target">
+                                            <option value="LocalIIS">Local IIS</option>
+                                            <option value="AzureVM">Azure VM</option>
+                                            <option value="AWSEC2">AWS EC2</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="strategy">Deployment Strategy</label>
+                                    <select id="strategy">
+                                        <option value="StopAndDeploy">Stop and Deploy</option>
+                                        <option value="BlueGreen">Blue-Green</option>
+                                        <option value="Canary">Canary</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="enable-database" checked>
+                                        Enable Database Deployment
+                                    </label>
+                                </div>
+
+                                <div id="database-config" class="form-subsection">
+                                    <div class="form-group">
+                                        <label for="db-provider">Database Provider</label>
+                                        <select id="db-provider">
+                                            <option value="SqlServerLocalDb">SQL Server LocalDB</option>
+                                            <option value="SqlServer">SQL Server</option>
+                                            <option value="PostgreSQL">PostgreSQL</option>
+                                            <option value="MySQL">MySQL</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="db-name">Database Name</label>
+                                        <input type="text" id="db-name" placeholder="MyApp_Dev">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="db-backup" checked>
+                                            Backup before deployment
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="enable-ssl" checked>
+                                        Enable SSL Certificate
+                                    </label>
+                                </div>
+
+                                <div id="ssl-config" class="form-subsection">
+                                    <div class="form-group">
+                                        <label for="cert-type">Certificate Type</label>
+                                        <select id="cert-type">
+                                            <option value="SelfSigned">Self-Signed (Dev)</option>
+                                            <option value="LetsEncrypt">Let's Encrypt</option>
+                                            <option value="AzureKeyVault">Azure Key Vault</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Save as Profile</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="icon">🚀</span>
+                                    Deploy Now
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Deployment Progress -->
+                        <div id="deployment-progress" class="deployment-progress hidden">
+                            <h3>Deployment in Progress</h3>
+                            
+                            <div class="progress-steps">
+                                <div class="progress-step" data-step="1">
+                                    <div class="step-icon">📋</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Discovery</div>
+                                        <div class="step-status">Analyzing application...</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-step" data-step="2">
+                                    <div class="step-icon">🗄️</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Database</div>
+                                        <div class="step-status">Waiting...</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-step" data-step="3">
+                                    <div class="step-icon">🔒</div>
+                                    <div class="step-content">
+                                        <div class="step-title">SSL</div>
+                                        <div class="step-status">Waiting...</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-step" data-step="4">
+                                    <div class="step-icon">📦</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Deploy</div>
+                                        <div class="step-status">Waiting...</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-step" data-step="5">
+                                    <div class="step-icon">✓</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Health Check</div>
+                                        <div class="step-status">Waiting...</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="deploy-progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <div class="progress-percent">0%</div>
+                            </div>
+
+                            <div class="deployment-logs">
+                                <h4>Live Logs</h4>
+                                <div id="deployment-log-content" class="log-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deployments Page -->
+                <div id="deployments-page" class="page">
+                    <div class="page-header">
+                        <h2 class="page-title">All Deployments</h2>
+                        <div class="page-actions">
+                            <select id="filter-status">
+                                <option value="">All Status</option>
+                                <option value="Success">Success</option>
+                                <option value="Failed">Failed</option>
+                                <option value="InProgress">In Progress</option>
+                            </select>
+                            <select id="filter-environment">
+                                <option value="">All Environments</option>
+                                <option value="Development">Development</option>
+                                <option value="Staging">Staging</option>
+                                <option value="Production">Production</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="data-table" id="deployments-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Environment</th>
+                                <th>Target</th>
+                                <th>Status</th>
+                                <th>Duration</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Profiles Page -->
+                <div id="profiles-page" class="page">
+                    <div class="page-header">
+                        <h2 class="page-title">Deployment Profiles</h2>
+                        <button class="btn btn-primary" id="new-profile-btn">
+                            <span class="icon">➕</span>
+                            New Profile
+                        </button>
+                    </div>
+
+                    <div class="profiles-grid" id="profiles-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Sites Page -->
+                <div id="sites-page" class="page">
+                    <h2 class="page-title">Active Sites</h2>
+                    
+                    <div class="sites-grid" id="sites-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Settings Page -->
+                <div id="settings-page" class="page">
+                    <h2 class="page-title">Settings</h2>
+                    
+                    <div class="settings-container">
+                        <div class="settings-section">
+                            <h3>General Settings</h3>
+                            <div class="form-group">
+                                <label for="api-endpoint">API Endpoint</label>
+                                <input type="text" id="api-endpoint" value="http://localhost:5000">
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Default Configuration</h3>
+                            <div class="form-group">
+                                <label for="default-environment">Default Environment</label>
+                                <select id="default-environment">
+                                    <option value="Development">Development</option>
+                                    <option value="Staging">Staging</option>
+                                    <option value="Production">Production</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary">Save Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
